@@ -1,10 +1,17 @@
 class Libro:
-    ##pass
+    ##SIEMPRE DEBE IR LA FRASE RESEVADA DE SLEF
     def __init__(self, titulo, autor, isbn, disponible):
         self.titulo = titulo
         self.autor = autor
         self.isbn = isbn
         self.disponible = disponible
+
+    def __str__(self):
+        return f"'{self.titulo}' por {self.autor} (ISBN: {self.isbn}) - {'Disponible' if self.disponible else 'No disponible'}"
+
+    def cambiar_disponibilidad(self):
+        if self.disponible:
+            self.disponible = False
 
 #Llamamos la función
 milibro = Libro("El Principito", "Antoine de Saint-Exupéry", "978-0156012195", True)
@@ -18,5 +25,8 @@ milibro3 = Libro("Rayuela", "Julio Cortázar", "978-0156012197", True)
 #cremaos catalogo para recorrer todos los libros
 catalogo = [milibro, milibro2, milibro3]
 
+# for libro in catalogo:
+#     print(f"El libro '{libro.titulo}' fue escrito por {libro.autor}.")
+
 for libro in catalogo:
-    print(f"El libro '{libro.titulo}' fue escrito por {libro.autor}.")
+    print(libro)

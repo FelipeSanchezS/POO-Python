@@ -1,32 +1,22 @@
-class Libro:
-    ##SIEMPRE DEBE IR LA FRASE RESEVADA DE SLEF
-    def __init__(self, titulo, autor, isbn, disponible):
-        self.titulo = titulo
-        self.autor = autor
-        self.isbn = isbn
-        self.disponible = disponible
+# main.py
+from exceptions import UsuarioNoEncontrado
+from biblioteca import Biblioteca
 
-    def __str__(self):
-        return f"'{self.titulo}' por {self.autor} (ISBN: {self.isbn}) - {'Disponible' if self.disponible else 'No disponible'}"
+biblioteca = Biblioteca()
+# Asignar datos iniciales creados previamente
+# biblioteca.usuarios = [...]
+# biblioteca.libros = [...]
 
-    def cambiar_disponibilidad(self):
-        if self.disponible:
-            self.disponible = False
+print("Bienvenido a Platzi Biblioteca.")
+print("Libros disponibles:")
+for titulo in biblioteca.libros_disponibles():
+    print(f"  - {titulo}")
+print()
 
-#Llamamos la función
-milibro = Libro("El Principito", "Antoine de Saint-Exupéry", "978-0156012195", True)
-milibro2 = Libro("Cien Años de Soledad", "Gabriel García Márquez", "978-0156012196", True)
-milibro3 = Libro("Rayuela", "Julio Cortázar", "978-0156012197", True)
+cedula = input("Digite el número de cédula: ")
 
-#print(f"Mi primer libro es '{milibro.titulo}' y fue escrito por {milibro.autor}.")
-#print(f"Mi segundo libro es '{milibro2.titulo}' y fue escrito por {milibro2.autor}.")
-#print(f"Mi tercer libro es '{milibro3.titulo}' y fue escrito por {milibro3.autor}.")
-
-#cremaos catalogo para recorrer todos los libros
-catalogo = [milibro, milibro2, milibro3]
-
-# for libro in catalogo:
-#     print(f"El libro '{libro.titulo}' fue escrito por {libro.autor}.")
-
-for libro in catalogo:
-    print(libro)
+try:
+    usuario = biblioteca.buscar_usuario(cedula)
+    print(f"Cédula: {usuario.cedula}, Nombre: {usuario.nombre}")
+except UsuarioNoEncontrado:
+    print("El usuario que estás buscando no existe.")

@@ -1,5 +1,5 @@
 from typing import Protocol
-
+from abc import ABC, abstractmethod
 from exceptions import TituloInvalidoError
 
 
@@ -8,8 +8,14 @@ class SolicitanteProtocol(Protocol):
         """Metodo que debe implementar cualquier solicitante"""
         ...
 
+class UsuarioBase(ABC):
+    @abstractmethod
+    def solicitar_libro(self):
+        pass
 
-class Usuario:
+
+
+class Usuario(UsuarioBase):
     def __init__(self, nombre, cedula):
         self.nombre = nombre
         self.cedula = cedula

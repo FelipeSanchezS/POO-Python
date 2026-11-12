@@ -36,7 +36,6 @@ class Libro:
             self.disponible = False
             self.__veces_prestado += 1
             return f"'{self.titulo}' prestado exitosamente. Total préstamos: {self.__veces_prestado}"
-        return f"'{self.titulo}' no está disponible"
 
     def devolver(self):
         self.disponible = True
